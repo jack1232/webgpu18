@@ -1,5 +1,5 @@
 # Step-by-Step WebGPU Graphics Programming (18) 
-## Create a torus Wireframe
+## Create a Cube with Lighting Effect
 
 This is the source code for the 18th part of a series YouTube videos on step-by-step WebGPU graphics programming.
 
