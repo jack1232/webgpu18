@@ -1,7 +1,7 @@
-import { CreateShapeWithLight } from './light';
-import { LightInputs } from './shaders';
+import { CreateShapeWithLight, LightInputs } from './light';
 import { CubeData } from './vertex_data';
 import $ from 'jquery';
+import "./site.css"
 
 const data = CubeData();
 let li:LightInputs = {};
@@ -16,12 +16,15 @@ $('#id-radio input:radio').on('click', function(){
 });
 
 $('#btn-redraw').on('click', function(){
-    li.color = $('#id-color').val()?.toString();
-    li.isPhong = $('#id-isphong').val()?.toString();
-    li.ambientIntensity = $('#id-ambient').val()?.toString();
-    li.diffuseIntensity = $('#id-diffuse').val()?.toString();
-    li.specularIntensity= $('#id-specular').val()?.toString();
-    li.shininess= $('#id-shininess').val()?.toString()!;
-    li.specularColor = $('#id-scolor').val()?.toString();
+    li.color = ($('#id-color').val()?.toString())?.split(',').map(Number) as any;
+    li.ambientIntensity = parseFloat($('#id-ambient').val()?.toString()!);
+    li.diffuseIntensity = parseFloat($('#id-diffuse').val()?.toString()!);
+    li.specularIntensity= parseFloat($('#id-specular').val()?.toString()!);
+    li.shininess= parseFloat($('#id-shininess').val()?.toString()!);
+    li.specularColor = ($('#id-scolor').val()?.toString())?.split(',').map(Number) as any;
+    CreateShapeWithLight(data.positions, data.normals, li, isAnimation);
+});
+
+window.addEventListener('resize', function(){
     CreateShapeWithLight(data.positions, data.normals, li, isAnimation);
 });
